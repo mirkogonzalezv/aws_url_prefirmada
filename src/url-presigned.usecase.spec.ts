@@ -22,12 +22,10 @@ describe('UrlPresignedUseCase', () => {
   it('deberia retornar una URL firmada de S3', async () => {
     const mockBucket = 'test-bucket';
     const mockFilename = 'test-file.xlsx';
-    const mockContentType = 'application/vnd.ms-excel';
     const mockUrl = 'https://mock-presigned-url.com';
     const url = await urlPresignedUseCases.getPresignedUrl(
       mockBucket,
       mockFilename,
-      mockContentType,
     );
 
     expect(url).toBe(mockUrl);
@@ -36,7 +34,6 @@ describe('UrlPresignedUseCase', () => {
         Bucket: mockBucket,
         Key: mockFilename,
         Expires: 60,
-        ContentType: mockContentType,
       }),
     );
   });

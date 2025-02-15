@@ -5,12 +5,9 @@ import { UrlPresignedUseCases } from './url-presigned.usecase';
 export class AppService {
   constructor(private readonly urlPresignedUseCases: UrlPresignedUseCases) {}
 
-  async getPresignedUrl(filename: string, contentType: string) {
+  async getPresignedUrl(filename: string) {
     const bucketName = process.env.AWS_BUCKET_NAME;
-    return this.urlPresignedUseCases.getPresignedUrl(
-      bucketName!,
-      filename,
-      contentType,
-    );
+    console.log(bucketName);
+    return this.urlPresignedUseCases.getPresignedUrl(bucketName!, filename);
   }
 }
