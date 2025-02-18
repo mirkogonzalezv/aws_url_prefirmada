@@ -1,17 +1,24 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { AppService } from './app.service';
-import { PresignedUrlDtoResult } from './presigned-url-result.dto';
 
-@Controller('s3')
+@Controller('interesados')
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get('presigned-url/')
+  @Get(':id/procesos/:idProceso/obtenerUrl')
   async getPresignedUrl(
-    @Query('filename') query: string,
-  ): Promise<PresignedUrlDtoResult> {
-    console.log(query);
-    const url = await this.appService.getPresignedUrl(query);
-    return { url };
+    @Param('id') idInteresado: string,
+    @Param('idProceso') idProceso: string,
+    @Query('filename') nombreArchivo: string,
+    @Query('proceso') nombreProceso: string,
+  ): Promise<string> {
+    console.log(nombreArchivo);
+    console.log(nombreProceso);
+    console.log(idInteresado);
+    console.log(idProceso);
+    // const url = await this.appService.getPresignedUrl(query);
+    // return { url };
+    await Promise.resolve();
+    return 'HOLA';
   }
 }

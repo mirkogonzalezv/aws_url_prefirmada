@@ -7,7 +7,6 @@ export class AppService {
 
   async getPresignedUrl(filename: string) {
     const bucketName = process.env.AWS_BUCKET_NAME;
-    console.log(bucketName);
     return this.urlPresignedUseCases.getPresignedUrl(bucketName!, filename);
   }
 }
